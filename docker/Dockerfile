@@ -1,19 +1,14 @@
-# Nginx base
+# Use lightweight Nginx image
 FROM nginx:alpine
 
-# Copy website files to Nginx
-COPY ../ /usr/share/nginx/html/
-
-# Install Node.js for WebSocket
+# Install NodeJS for WebSocket server
 RUN apk add --no-cache nodejs npm
+
+# Copy website files into Nginx's html directory
+COPY ../ /usr/share/nginx/html/
 
 # Copy WebSocket server
 COPY ../websocket-server.js /usr/src/app/websocket-server.js
+
 WORKDIR /usr/src/app
-
-# Expose Nginx and WebSocket ports
-EXPOSE 80 3000
-
-# Start Nginx and WebSocket server
-CMD ["sh", "-c", "nginx -g 'daemon off;' & node websocket-server.js"]
 
