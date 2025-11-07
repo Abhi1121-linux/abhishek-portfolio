@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Abhishek Portfolio</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <h1>Welcome to Abhishek's Portfolio</h1>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+  <p>Your one-stop place for awesome projects and creative work.</p>
+
+  <script src="js/main.js"></script>
+  <script>
+    // WebSocket integration
+    const ws = new WebSocket('ws://192.168.5.137:3000');
+    ws.onmessage = (event) => {
+      console.log(event.data);
+      if(event.data.includes('Update detected')){
+        location.reload(); // auto-refresh on change
+      }
+    };
+  </script>
+</body>
+</html>
+
